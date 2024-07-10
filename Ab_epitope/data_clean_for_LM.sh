@@ -1,7 +1,4 @@
 #!/bin/bash
-python mBLM/script/merge_raw_data.py
-python mBLM/script/df2fasta.py mBLM/result/memory_paired_Abs.csv mBLM/result/memory_paired_Abs.fasta
-
 # clustering
 output_prefix=mBLM/result/cluster/
 f=mBLM/result/memory_paired_Abs.fasta
@@ -10,8 +7,12 @@ name=memory_paired_Abs
 echo "Checking if $output_prefix exists"
 if [ ! -d "$output_prefix" ]; then
 	echo "Creating output directory"
-	mkdir "$output_prefix"
+	mkdir -p "$output_prefix"
 fi
+
+python mBLM/script/merge_raw_data.py
+python mBLM/script/df2fasta.py mBLM/result/memory_paired_Abs.csv mBLM/result/memory_paired_Abs.fasta
+
 
 for x in 0.5 0.6
 do
